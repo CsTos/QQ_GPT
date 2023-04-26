@@ -9,6 +9,7 @@ import openai #主机器模块 openai
 import requests
 import re
 import base64 #base64 编码模块
+#这里开始 出现改动？
 print("\033[38;5;82m开始载入QBot...\033[0m")
 print('\033[38;5;198m此为二次改进版\033\n\033[38;5;122m原版地址为:https://lucent.blog/?p=118\033[0m')
 Qbot_v = "1.6v"
