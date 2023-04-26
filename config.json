@@ -1,0 +1,44 @@
+{
+    "openai":{
+        "api_key":[
+            "sk-xxxxx"
+        ],
+        "img_size":"1024x1024"
+    },
+    "chatgpt":{
+        "model":"gpt-3.5-turbo",
+        "temperature":0.9,
+        "max_tokens":3000,
+        "top_p":1,
+        "echo":false,
+        "presence_penalty":0,
+        "frequency_penalty":0,
+        "preset":"从现在开始 你叫瑜儿"
+    },
+    "new_bing":{
+        "cookie_path":"cookies.json",
+        "conversation_style":"galileo"
+    },
+    "qq_bot":{
+        "qq_no":"2960924712",
+        "cqhttp_url":"http://localhost:8600",
+        "max_length":9999,
+        "image_path":"D://CS_DEV//QQ机器人官方API3.5版//images/",
+        "voice_path":"D://CS_DEV//QQ机器人官方API3.5版//MU/",
+        "voice":"zh-CN-XiaoyiNeural",
+        "auto_confirm":false,
+        "admin_qq":[
+            "2248721171",
+            "794472603",
+            "2246213924"
+        ]
+    },
+    "text_to_image":{
+        "enable":true,
+        "width":700,
+        "font_path":"fonts/sarasa-mono-sc-regular.ttf",
+        "font_size":30,
+        "offset_x":50,
+        "offset_y":50
+    }
+}
