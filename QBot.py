@@ -9,7 +9,6 @@ import openai #主机器模块 openai
 import requests
 import re
 import base64 #base64 编码模块
-#这里开始 出现改动？
 print("\033[38;5;82m开始载入QBot...\033[0m")
 print('\033[38;5;198m此为二次改进版\033\n\033[38;5;122m原版地址为:https://lucent.blog/?p=118\033[0m')
 Qbot_v = "1.6v"
@@ -56,8 +55,9 @@ else:
     CS_FNSS = cs_set_cfg('qzls','qz')
 sessions = {}
 current_key_index = 0
+cs_LVE = 0 #直播状态码 个人用于直播时的开关
 
-openai.api_base = "https://gpt.lucent.blog/v1"
+openai.api_base = "https://api.openai.com/v1"
 
 def cs_at(qqat): #从艾特码中取出QQ
     pattern = r"\[CQ:at,qq=(\d+)\]"
@@ -255,7 +255,7 @@ print('\033[38;5;51m\n' + decoded_title + '\n\033[0m')
 print('\033[92m---------欢迎使用Qbot---------\033[0m')
 print('\033[38;5;51m---帮助指令 请 @机器人 + 指令说明 例如:\n---@机器人 指令说明\033[0m')
 print('\033有问题 请加QQ群:392193454 进行反馈 进群答案:反图灵\033[0m')
-print('\033[32m---CsTos 于 2023/04/27 完成改进\033[0m')
+print('\033[32m---CsTos 于 2023/04/18 完成改进\033[0m')
 
 
 # 获取账号余额接口
@@ -285,7 +285,8 @@ def get_message():
             return '0'
         if message.strip().startswith('生成图像'):
             print('功能暂时不可用')
-            return '0'
+            return '0' #不要尝试删掉这段返回 下边的也别删 后边的代码存在问题！ 
+        #因为以下代码无法正常把图像地址发到QQ那 我也不知道什么缘故 导致发出去的地址被转义了 没变成图片。
             if cs_image == False:
                 if cs_su(uid) == 0:
                     res = requests.post(url=config_data['qq_bot']['cqhttp_url'] + "/send_group_msg",
@@ -694,7 +695,8 @@ def chat(msg, session):
             del session['msg'][1:len(session['msg'])]
             return XZ
         # 与ChatGPT交互获得对话内容
-        # return "CsTos正在b站直播 我暂时无法提供对话服务..."
+        if cs_LVE == 1:
+            return "CsTos正在b站直播 我暂时无法提供对话服务..."
         message = chat_with_gpt(session['msg'])
         # 记录上下文
         session['msg'].append({"role": "assistant", "content": message})
