@@ -39,7 +39,7 @@ from system_info import cs_systinfo #查询系统信息模块
 import subprocess #???
 from cs_listbk import csbk_list #模块作用 查询 或写入 黑名单
 from cs_cfg import cs_set_cfg #模块作用 查询 或写入 配置
-
+from cs_motd import cs_xk #用于获取motd信息
 session_config = {
     'msg': [
         {"role": "system", "content": config_data['chatgpt']['preset']}
@@ -78,6 +78,9 @@ def cs_chat(ct_msg,cs_qq): #用于机器的 功能设定/查询信息 例如 菜
     ct_msg = ct_msg.strip()
     if '指令说明2' == ct_msg.strip():
         return cs_menu2()
+    if '服务器信息' == ct_msg.strip():
+        ct_motd = cs_xk("xfk.mcone.cc",30000)
+        return '服务器信息:\n' + ct_motd
     if ct_msg.strip().startswith('添加权限'):
         if 2248721171 == int(cs_qq): #这里为主人的QQ号 防止其他管理员恶意添加
             ct_msg = ct_msg.strip()
